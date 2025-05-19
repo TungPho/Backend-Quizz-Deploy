@@ -8,7 +8,7 @@ class Database {
   constructor() {
     this.connect();
   }
-  connect(type = "MONGO_LOCAL") {
+  connect(type = "MONGO_CLOUD") {
     try {
       const connectString = DB_CONFIG[type];
       const db = mongoose.connect(connectString);

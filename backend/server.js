@@ -11,8 +11,10 @@ const server = http.createServer(app);
 const FILTER_LENGTH = -7;
 const io = socketIO(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
   },
 });
 
