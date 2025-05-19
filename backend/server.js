@@ -8,6 +8,12 @@ const { studentModel, teacherModel } = require("./src/models/user.model");
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 
+app.use("/", (req, res, next) => {
+  return res.status(200).json({
+    message: "Welcome to the server",
+  });
+});
+
 const FILTER_LENGTH = -7;
 const io = socketIO(server, {
   cors: {
