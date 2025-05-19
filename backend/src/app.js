@@ -8,6 +8,7 @@ const db = require("./dbs/connect.db");
 const mainRouter = require("./routers/main.route");
 const app = express();
 app.use(morgan("dev"));
+app.use(cors());
 app.use(express.json());
 app.use(mainRouter);
 

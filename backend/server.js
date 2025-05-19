@@ -1,9 +1,8 @@
 const socketIO = require("socket.io");
 const http = require("http");
-const cors = require("cors");
 
 const app = require("./src/app");
-app.use(cors());
+
 const notificationModel = require("./src/models/notification.model");
 const { studentModel, teacherModel } = require("./src/models/user.model");
 
