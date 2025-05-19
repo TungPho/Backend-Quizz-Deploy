@@ -1,5 +1,6 @@
 const socketIO = require("socket.io");
 const http = require("http");
+const cors = require("cors");
 
 const app = require("./src/app");
 const notificationModel = require("./src/models/notification.model");
@@ -17,13 +18,13 @@ app.use("/", (req, res, next) => {
 const FILTER_LENGTH = -7;
 const io = socketIO(server, {
   cors: {
-    origin: "https://frontend-quizz-deploy.vercel.app/",
+    origin: "*",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
-
+app.use(cors());
 const rooms = {};
 const teachersID = {};
 const joinedStudentID = {};
