@@ -18,7 +18,7 @@ app.use("/", (req, res, next) => {
 const FILTER_LENGTH = -7;
 const io = socketIO(server, {
   cors: {
-    origin: "*",
+    origin: "https://frontend-quizz-deploy.vercel.app/",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
