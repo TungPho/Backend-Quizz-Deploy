@@ -62,6 +62,19 @@ class ClassController {
     });
   };
 
+  removeStudentFromClass = async (req, res, next) => {
+    //class id
+    const { id } = req.params;
+    const { studentID } = req.body;
+    console.log(id, studentID);
+    const result = await ClassService.removeStudentFromClass(id, studentID);
+
+    res.status(200).json({
+      messaege: "Remove Student",
+      metadata: result,
+    });
+  };
+
   createClass = async (req, res, next) => {
     const { name, teacherId, students, tests } = req.body;
     const newClass = { name, teacherId, students, tests };

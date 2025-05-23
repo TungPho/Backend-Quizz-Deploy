@@ -88,5 +88,20 @@ class ClassService {
     student.save();
     return foundClass;
   };
+  static removeStudentFromClass = async (id, studentID) => {
+    // 1.
+    //class id
+    const foundClass = await classModel.findById(new Types.ObjectId(id));
+    const student = await studentModel.findById(studentID);
+    if (!student) throw new Error("Can't find this student");
+    if (!foundClass) throw new Error("Can't find this class");
+    foundClass.students = foundClass.students.filter(
+      (sId) => sId.toString() !== student._id.toString()
+    );
+
+    await foundClass.save();
+
+    return foundClass;
+  };
 }
 module.exports = ClassService;

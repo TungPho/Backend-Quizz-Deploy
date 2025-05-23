@@ -18,6 +18,11 @@ classRoute.get(
 );
 
 classRoute.post("/classes/:id", catchAsync(classControllers.addStudentToClass));
+classRoute.post(
+  "/remove-student/:id",
+  catchAsync(classControllers.removeStudentFromClass)
+);
+
 classRoute.post("/classes", catchAsync(classControllers.createClass));
 classRoute.put("/classes/:id", catchAsync(classControllers.updateClass));
 classRoute.delete("/classes/:id", catchAsync(classControllers.deleteClass));
