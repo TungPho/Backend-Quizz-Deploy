@@ -190,7 +190,7 @@ class UserController {
     const secret = process.env.JWT_SECRET + user.password;
     const token = jwt.sign({ id: user._id, email: user.email }, secret);
     // Put the frontend URL here and compare userid and token from the URL param
-    const resetURL = `${process.env.FRONT_END_URL}forgot-password/${user._id}/${token}`;
+    const resetURL = `https://frontend-quizz-deploy.vercel.app/forgot-password/${user._id}/${token}`;
     // http://localhost:3000/api/v1/users/reset-password/${user._id}/${token}
     console.log(resetURL);
     const transporter = nodemailer.createTransport({
