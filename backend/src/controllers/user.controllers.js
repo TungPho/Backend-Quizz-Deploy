@@ -43,15 +43,23 @@ class UserController {
       message: "Update user by id Success",
     });
   };
-  banUserById = async (req, res, next) => {
+  // activate and deactivate
+  deactivateUserById = async (req, res, next) => {
     const { userId } = req.params;
-    const result = await UserServiceFactory.deleteUserById(userId);
+    const result = await UserServiceFactory.deactivateUserById(userId);
     res.status(200).json({
       metadata: result,
-      message: "Delete user by id Success",
+      message: "De-activate user by id Success",
     });
   };
-
+  activateUserById = async (req, res, next) => {
+    const { userId } = req.params;
+    const result = await UserServiceFactory.activateUserById(userId);
+    res.status(200).json({
+      metadata: result,
+      message: "Activate user by id Success",
+    });
+  };
   deleteUserById = async (req, res, next) => {
     const { userId } = req.params;
     const result = await UserServiceFactory.deleteUserById(userId);

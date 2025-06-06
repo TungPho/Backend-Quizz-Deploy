@@ -10,6 +10,7 @@ class UserServiceFactory {
     const users = await userModel.find();
     return users;
   };
+
   static getUserById = async (userId) => {
     const users = await userModel.findById(userId);
     return users;
@@ -49,10 +50,17 @@ class UserServiceFactory {
         : await teacherModel.findByIdAndDelete(userId);
     return students;
   };
-
-  static banUserById = async (userId) => {
+  // activate and deactivate
+  static deactivateUserById = async (userId) => {
     const foundUser = userModel.findByIdAndUpdate(userId, {
       is_active: false,
+    });
+    return foundUser;
+  };
+
+  static activateUserById = async (userId) => {
+    const foundUser = userModel.findByIdAndUpdate(userId, {
+      is_active: true,
     });
     return foundUser;
   };

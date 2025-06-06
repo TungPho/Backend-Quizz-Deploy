@@ -33,6 +33,17 @@ userRoute.post(
   catchAsync(authAdmin),
   userControllers.approveTeacherRequest
 );
+// activate and de-activate users:
+userRoute.patch(
+  "/activate-users/:userId",
+  catchAsync(authAdmin),
+  catchAsync(userControllers.activateUserById)
+);
+userRoute.patch(
+  "/deactivate-users/:userId",
+  catchAsync(authAdmin),
+  catchAsync(userControllers.deactivateUserById)
+);
 
 userRoute.put("/users/:userId", catchAsync(userControllers.updateUserById));
 
