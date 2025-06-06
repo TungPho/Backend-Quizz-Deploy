@@ -1,6 +1,14 @@
 const SubmissionService = require("../services/submission.service");
 
 class SubmissionController {
+  getAllSubmissions = async (req, res, next) => {
+    const results = await SubmissionService.getAllSubmissions();
+    return res.status(200).json({
+      metadata: results,
+      mesage: "Get all user's submission successfully",
+    });
+  };
+
   // hàm này review lại test của 1 user
   // : Dùng cho học sinh review lại submission của mình
   // : Dùng cho test history của giáo viên, xem kết quả của học sinh
@@ -10,7 +18,7 @@ class SubmissionController {
     const results = await SubmissionService.getAllSubmisionByUserId(id);
     return res.status(200).json({
       metadata: results,
-      mesage: "Get all user's submission successfully",
+      mesage: "Get all user's submission by user id successfully",
     });
   };
 

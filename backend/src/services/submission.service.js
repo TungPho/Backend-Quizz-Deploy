@@ -3,6 +3,11 @@ const submissonModel = require("../models/submisson.model");
 const testModel = require("../models/test.model");
 const { userModel, studentModel } = require("../models/user.model");
 class SubmissionService {
+  static getAllSubmissions = async () => {
+    const submissions = await submissonModel.find({});
+    return submissions;
+  };
+
   static getAllSubmisionByUserId = async (userId) => {
     const foundUser = await studentModel.findById(new Types.ObjectId(userId));
     if (!foundUser) throw new Error("Can't find this user id");

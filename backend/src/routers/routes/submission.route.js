@@ -4,6 +4,10 @@ const submissionController = require("../../controllers/submission.controllers")
 const submissionRoute = express.Router();
 
 submissionRoute.get(
+  "/submissions",
+  catchAsync(submissionController.getAllSubmissions)
+);
+submissionRoute.get(
   "/submissions/:id",
   catchAsync(submissionController.getAllSubmisionByUserId)
 );
