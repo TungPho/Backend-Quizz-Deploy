@@ -67,27 +67,40 @@ class ClassService {
     const deletedClass = await classModel.findByIdAndDelete(classId);
     return deletedClass;
   };
-  static addStudentToClassById = async (id, studentID) => {
-    // 1.
-    console.log("OK");
-    //class id
-    const foundClass = await classModel.findById(new Types.ObjectId(id));
-    const student = await studentModel.findOne({
-      student_id: studentID,
-    });
-    if (!student) throw new Error("Can't find this student");
+  static addStudentToClassById = async (classId, studentID) => {
+    try {
+      const foundClass = await classModel.findById(classId);
+      if (!foundClass) throw new Error("Class not found");
 
-    // find if this student already in the class
-    const isStudentInTheClass = await studentModel.find({ classes: id });
-    // if (isStudentInTheClass.length >= 1)
-    //   throw new Error("This Student already in the class");
-    // 1. tìm class và add student đó vào:
-    foundClass.students.push(student._id);
-    foundClass.save();
-    // 2. Tìm student và add class id vào
-    student.classes.push(foundClass._id);
-    student.save();
-    return foundClass;
+      const student = await studentModel.findOne({ student_id: studentID });
+      if (!student) throw new Error("Student not found");
+
+      // Kiểm tra nếu student đã có trong class
+      const alreadyInClass = foundClass.students.some(
+        (sId) => sId.toString() === student._id.toString()
+      );
+      if (alreadyInClass) {
+        throw new Error("Student is already in this class");
+      }
+
+      // Thêm student vào class
+      foundClass.students.push(student._id);
+      await foundClass.save();
+
+      // Thêm class vào student (nếu chưa có)
+      const alreadyHasClass = student.classes.some(
+        (cId) => cId.toString() === foundClass._id.toString()
+      );
+      if (!alreadyHasClass) {
+        student.classes.push(foundClass._id);
+        await student.save();
+      }
+
+      return foundClass;
+    } catch (error) {
+      console.error("Error in addStudentToClassById:", error.message);
+      throw error;
+    }
   };
   static removeStudentFromClass = async (id, studentID) => {
     // 1.
