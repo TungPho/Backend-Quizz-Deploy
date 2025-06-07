@@ -10,7 +10,11 @@ userRoute.delete(
   catchAsync(authAdmin),
   catchAsync(userControllers.deleteUserById)
 );
-
+userRoute.get(
+  "/users/check-active/:userId",
+  catchAsync(authAdmin),
+  catchAsync(userControllers.checkActiveUser)
+);
 userRoute.get(
   "/students",
   catchAsync(authAdmin),

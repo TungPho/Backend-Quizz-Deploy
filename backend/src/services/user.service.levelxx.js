@@ -15,7 +15,10 @@ class UserServiceFactory {
     const users = await userModel.findById(userId);
     return users;
   };
-
+  static checkActiveUser = async (userId) => {
+    const user = await userModel.findById(userId);
+    return user.is_active;
+  };
   static updateUserById = async (userId, name, school_name) => {
     const foundUser = await userModel.findById(userId);
     if (!foundUser) throw new Error("Can't find this user");

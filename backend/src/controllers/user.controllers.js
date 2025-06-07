@@ -266,6 +266,14 @@ class UserController {
       message: "Verify Success",
     });
   };
+  checkActiveUser = async (req, res, next) => {
+    const { userId } = req.params;
+    const isActive = await UserServiceFactory.checkActiveUser(userId);
+    return res.status(200).json({
+      message: "Check user active",
+      isActive: isActive,
+    });
+  };
 }
 
 module.exports = new UserController();
