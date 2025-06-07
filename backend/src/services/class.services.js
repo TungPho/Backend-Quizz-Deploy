@@ -79,8 +79,8 @@ class ClassService {
 
     // find if this student already in the class
     const isStudentInTheClass = await studentModel.find({ classes: id });
-    if (isStudentInTheClass.length >= 1)
-      throw new Error("This Student already in the class");
+    // if (isStudentInTheClass.length >= 1)
+    //   throw new Error("This Student already in the class");
     // 1. tìm class và add student đó vào:
     foundClass.students.push(student._id);
     foundClass.save();
