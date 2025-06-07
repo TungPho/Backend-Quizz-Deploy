@@ -12,7 +12,6 @@ userRoute.delete(
 );
 userRoute.get(
   "/users/check-active/:userId",
-  catchAsync(authAdmin),
   catchAsync(userControllers.checkActiveUser)
 );
 userRoute.get(
