@@ -152,8 +152,8 @@ class UserController {
   loginUser = async (req, res, next) => {
     const { email, password } = req.body;
     const foundUser = await userModel.findOne({ email });
-    if (foundUser.role === "teacher" && !foundUser.is_active) {
-      throw new Error("Not Authorized");
+    if (!foundUser.is_active) {
+      throw new Error("You've been banned! Please contact admin");
     }
     // find userName
 
@@ -174,7 +174,6 @@ class UserController {
 
   loginAdmin = async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(email, password);
     if (email !== "admin@gmail.com" || password !== "ductung05")
       throw new Error("Not Authorized");
     const token = await generateToken({ email, role: "admin" });

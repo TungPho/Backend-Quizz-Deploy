@@ -154,7 +154,7 @@ io.on("connection", (socket) => {
     );
   });
 
-  // 2. request to join class:
+  // 2. request to join class: phải tới được teacerh
   socket.on("requestToJoinClass", async (classInfo, studentId) => {
     const student = await studentModel.findOne({
       student_id: studentId,
