@@ -69,6 +69,7 @@ class ClassService {
   };
   static addStudentToClassById = async (id, studentID) => {
     // 1.
+    console.log("OK");
     //class id
     const foundClass = await classModel.findById(new Types.ObjectId(id));
     const student = await studentModel.findOne({
