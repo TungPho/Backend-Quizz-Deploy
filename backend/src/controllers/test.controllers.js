@@ -42,9 +42,10 @@ class TestController {
 
   updateTest = async (req, res, next) => {
     const { id } = req.params;
-    const { title, timeLimit, classId, teacherId, subject } = req.body;
+    const { title, timeLimit, subject } = req.body;
+    console.log(title, timeLimit, subject);
     const results = await TestService.updateTest(
-      { title, timeLimit, classId, teacherId, subject },
+      { title, timeLimit, subject },
       id
     );
     return res.status(200).json({
