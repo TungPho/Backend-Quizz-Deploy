@@ -10,10 +10,6 @@ const TestSchema = Schema(
       required: true,
       default: "Untitled Test",
     },
-    classId: {
-      type: String,
-      default: "",
-    },
     teacherId: {
       type: String,
       default: "",
