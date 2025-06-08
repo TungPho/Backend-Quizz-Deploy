@@ -22,6 +22,10 @@ const TestSchema = Schema(
       type: [],
       default: [],
     },
+    subject: {
+      type: String,
+      default: "Mathematics",
+    },
     timeLimit: {
       type: Number,
       required: true,
