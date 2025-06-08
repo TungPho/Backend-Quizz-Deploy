@@ -118,6 +118,7 @@ class User {
     this.role = role;
     this.classes = classes;
     this.user_attributes = user_attributes;
+    this.is_active = this.role === "student" ? true : false;
   }
   async createUser(userID) {
     console.log("3");
@@ -143,7 +144,7 @@ class Student extends User {
     if (!newStudent) throw new Error("Error create student");
     const newUser = await super.createUser(newStudent._id);
 
-    if (!newStudent) throw new Error("Error create user");
+    if (!newUser) throw new Error("Error create user");
     return newStudent;
   };
 }
