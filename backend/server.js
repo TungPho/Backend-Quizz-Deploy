@@ -104,6 +104,12 @@ io.on("connection", (socket) => {
     io.to(socket.id).emit("roomList", filteredRooms);
   });
 
+  // get all rooms
+  socket.on("getAllRooms", (className) => {
+    const filteredRooms = Object.entries(rooms);
+    io.to(socket.id).emit("roomList", filteredRooms);
+  });
+
   socket.on("notificationResponse", (notifitcation, accepted) => {
     // join room request
     if (notifitcation.action === "requestJoinRoom") {
