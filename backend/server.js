@@ -22,8 +22,8 @@ const io = socketIO(server, {
       "https://frontend-quizz-deploy.vercel.app",
       "https://frontend-quizz-deploy-rbhronm81-tungphos-projects.vercel.app",
       "http://localhost:5173/",
-      "https://admin-quizz-app.vercel.app/dashboard"
-      "https://admin-quizz-app.vercel.app"
+      "https://admin-quizz-app.vercel.app/dashboard",
+      "https://admin-quizz-app.vercel.app",
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
