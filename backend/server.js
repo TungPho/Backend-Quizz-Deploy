@@ -108,7 +108,7 @@ io.on("connection", (socket) => {
 
   // get all rooms
   socket.on("getAllRooms", () => {
-    const filteredRooms = Object.entries(rooms).length;
+    const filteredRooms = Object.entries(rooms);
     io.to(socket.id).emit("roomList", filteredRooms);
   });
 
