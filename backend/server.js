@@ -51,11 +51,12 @@ io.on("connection", (socket) => {
   //create room event
   socket.on(
     "createRoom",
-    (room, teacherID, testID, classId, testName, duration) => {
+    (room, teacherID, testID, classId, testName, duration, subject) => {
       if (rooms[room]) {
         console.log("Room has exist");
         return;
       }
+      console.log("subject", subject);
       const className = room.slice(0, FILTER_LENGTH);
       rooms[room] = [];
       rooms[room].push({
@@ -64,6 +65,7 @@ io.on("connection", (socket) => {
         className: className,
         test_id: testID,
         test_name: testName,
+        subject,
         classId,
         duration,
       });
